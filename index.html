@@ -119,6 +119,15 @@
       align-items: flex-start;
       gap: 22px;
       margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .avatar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      flex-shrink: 0;
     }
 
     /* Replace this div with <img class="avatar" src="photo.jpg" alt="Your Name"> */
@@ -137,6 +146,39 @@
       letter-spacing: 0.02em;
       transition: background 0.25s;
       /* When using <img>: object-fit: cover; border: 1.5px solid var(--border); */
+    }
+
+    .cv-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 11.5px;
+      font-weight: 500;
+      background: var(--surface);
+      white-space: nowrap;
+      transition: background 0.14s, color 0.14s, border-color 0.14s;
+    }
+
+    .cv-btn:hover {
+      background: var(--text);
+      color: var(--surface);
+      border-color: var(--text);
+    }
+
+    .cv-btn svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
     }
 
     .hero-text h1 {
@@ -204,6 +246,7 @@
     .social-links {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 8px;
       margin-bottom: 48px;
     }
@@ -246,14 +289,6 @@
       stroke-linecap: round;
       stroke-linejoin: round;
       flex-shrink: 0;
-    }
-
-    .social-sep {
-      display: flex;
-      align-items: center;
-      color: var(--subtle);
-      font-size: 13px;
-      padding: 0 2px;
     }
 
     /* ─── Card Sections ─────────────────────────────────────── */
@@ -309,6 +344,7 @@
       gap: 13px;
       overflow-x: scroll;
       scroll-behavior: smooth;
+      scroll-snap-type: x proximity;
       scrollbar-width: none;
       -ms-overflow-style: none;
       /* Padding gives room for the hover lift and shadow without clipping */
@@ -361,7 +397,8 @@
     /* ─── Cards ─────────────────────────────────────────────── */
 
     .card {
-      flex: 0 0 252px;
+      flex: 0 0 min(252px, 78vw);
+      scroll-snap-align: start;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -512,8 +549,18 @@
 
   <!-- Hero -->
   <header class="hero">
-    <!-- Swap this div for: <img class="avatar" src="photo.jpg" alt="Ryan Murphy"> -->
-    <div class="avatar">RM</div>
+    <div class="avatar-col">
+      <!-- Swap this div for: <img class="avatar" src="photo.jpg" alt="Ryan Murphy"> -->
+      <div class="avatar">RM</div>
+      <a href="cv.pdf" download class="cv-btn">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        CV
+      </a>
+    </div>
     <div class="hero-text">
       <h1>Ryan Murphy</h1>
       <p data-i18n="bio">Researcher working on railway routing and scheduling. Interested in answer set programming and computational intelligence.
@@ -575,17 +622,6 @@
         <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
       </svg>
       YouTube
-    </a>
-
-    <span class="social-sep" aria-hidden="true">•</span>
-
-    <a href="cv.pdf" download class="social-link">
-      <svg viewBox="0 0 24 24">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-        <polyline points="7 10 12 15 17 10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>
-      </svg>
-      CV
     </a>
 
   </nav>
